@@ -1,3 +1,84 @@
+export interface Moment {
+  id: string;
+  athlete: string;
+  play: string;
+  date: string;
+  series: string;
+  edition: string;
+  rarity: string;
+  image: string;
+  video: string;
+}
+
+export const moments: Moment[] = [
+  {
+    id: '1',
+    athlete: 'ALLYSON FELIX',
+    play: 'Olympic Gold Sprint',
+    date: 'Aug 15 2023',
+    series: 'Track Legends (Series 2024-25)',
+    edition: 'Ultimate #/10',
+    rarity: 'LE',
+    image: 'https://images.pexels.com/photos/618613/pexels-photo-618613.jpeg',
+    video: 'https://assets.mixkit.co/videos/preview/mixkit-woman-running-through-ancient-ruins-32807-large.mp4'
+  },
+  {
+    id: '2',
+    athlete: 'MEGAN RAPINOE',
+    play: 'World Cup Final Goal',
+    date: 'Jul 20 2023',
+    series: 'Soccer Icons (Series 2024-25)',
+    edition: 'Ultimate #/10',
+    rarity: 'LE',
+    image: 'https://images.pexels.com/photos/1461973/pexels-photo-1461973.jpeg',
+    video: 'https://assets.mixkit.co/videos/preview/mixkit-soccer-player-dribbling-a-ball-40677-large.mp4'
+  },
+  {
+    id: '3',
+    athlete: 'SERENA WILLIAMS',
+    play: 'Grand Slam Victory',
+    date: 'Sep 09 2023',
+    series: 'Tennis Legends (Series 2024-25)',
+    edition: 'Rare #/199',
+    rarity: 'LE',
+    image: 'https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg',
+    video: 'https://assets.mixkit.co/videos/preview/mixkit-tennis-player-returning-a-ball-49988-large.mp4'
+  },
+  {
+    id: '4',
+    athlete: 'BREANNA STEWART',
+    play: 'Championship Goal',
+    date: 'Oct 15 2023',
+    series: 'Soccer Elite (Series 2024-25)',
+    edition: 'Rare #/199',
+    rarity: 'LE',
+    image: 'https://images.pexels.com/photos/30378468/pexels-photo-30378468/free-photo-of-casual-female-soccer-player-in-goal-moment.jpeg',
+    video: 'https://assets.mixkit.co/videos/preview/mixkit-soccer-player-dribbling-a-ball-40677-large.mp4'
+  },
+  {
+    id: '5',
+    athlete: 'KATIE LEDECKY',
+    play: 'World Record Swim',
+    date: 'Jun 30 2023',
+    series: 'Aquatics Stars (Series 2024-25)',
+    edition: 'Rare #/199',
+    rarity: 'LE',
+    image: 'https://images.pexels.com/photos/261185/pexels-photo-261185.jpeg',
+    video: 'https://assets.mixkit.co/videos/preview/mixkit-young-woman-swimming-in-a-pool-1170-large.mp4'
+  },
+  {
+    id: '6',
+    athlete: 'SIMONE BILES',
+    play: 'Perfect 10 Routine',
+    date: 'Nov 12 2023',
+    series: 'Gymnastics Icons (Series 2024-25)',
+    edition: 'Rare #/199',
+    rarity: 'LE',
+    image: 'https://images.pexels.com/photos/931321/pexels-photo-931321.jpeg',
+    video: 'https://assets.mixkit.co/videos/preview/mixkit-gymnast-doing-a-complicated-routine-on-a-mat-40159-large.mp4'
+  }
+];
+
 export interface Athlete {
   id: string;
   name: string;
@@ -23,130 +104,53 @@ export interface Athlete {
     achievement: string;
     date: string;
   }>;
-  futurePlans: {
-    nextEvent: string;
-    daysRemaining: number;
-    goal: string;
-  };
-  coachQuote: {
-    text: string;
-    author: string;
-  };
-  contracts: Array<{
-    brand: string;
-    period: string;
-    type: string;
-  }>;
   social: {
     instagram: string;
     twitter: string;
     tiktok: string;
   };
+  coachQuote: {
+    text: string;
+    author: string;
+  };
 }
 
 export const athletes: Record<string, Athlete> = {
-  "marcus-johnson": {
-    id: "marcus-johnson",
-    name: "Marcus Johnson",
-    image: "https://images.pexels.com/photos/2834917/pexels-photo-2834917.jpeg",
-    tagline: "Rising Star of Basketball",
-    potentialRating: 92,
+  "allyson-felix": {
+    id: "allyson-felix",
+    name: "Allyson Felix",
+    image: "https://images.pexels.com/photos/618613/pexels-photo-618613.jpeg",
+    tagline: "Olympic Legend",
+    potentialRating: 98,
     investmentMetrics: {
       growthRate: "+45%",
-      supporterCount: "8.2K",
-      averageROI: "28%",
-      stakingPrice: "4.2 SOL"
+      supporterCount: "12.5K",
+      averageROI: "32%",
+      stakingPrice: "5.2 SOL"
     },
     statistics: {
-      matchesPlayed: 82,
+      matchesPlayed: 24,
       goalsScored: 0,
-      assists: 156,
-      winRate: 65,
-      careerDuration: "2 Years (2022 - Present)"
+      assists: 0,
+      winRate: 92,
+      careerDuration: "2004 - Present"
     },
     highlights: [
       {
-        title: "Rookie of the Month",
-        description: "Named Eastern Conference Rookie of the Month",
-        achievement: "20.5 PPG Average",
-        date: "2024"
-      },
-      {
-        title: "Career High Night",
-        description: "Scored 35 points against defending champions",
-        achievement: "35 PTS, 8 AST",
-        date: "2024"
-      }
-    ],
-    futurePlans: {
-      nextEvent: "All-Star Weekend Rising Stars Game",
-      daysRemaining: 45,
-      goal: "Make the All-Star team"
-    },
-    coachQuote: {
-      text: "Marcus has that rare combination of natural talent and incredible work ethic. He's going to be a superstar.",
-      author: "Coach Mike Williams"
-    },
-    contracts: [
-      { brand: "Nike", period: "2023-2026", type: "Shoe Deal" },
-      { brand: "Thunder", period: "2022-2026", type: "Rookie Contract" }
-    ],
-    social: {
-      instagram: "1.2M",
-      twitter: "850K",
-      tiktok: "2.1M"
-    }
-  },
-  "sarah-williams": {
-    id: "sarah-williams",
-    name: "Sarah Williams",
-    image: "https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg",
-    tagline: "The Future of Women's Football",
-    potentialRating: 95,
-    investmentMetrics: {
-      growthRate: "+32%",
-      supporterCount: "10.1K",
-      averageROI: "25%",
-      stakingPrice: "3.8 SOL"
-    },
-    statistics: {
-      matchesPlayed: 45,
-      goalsScored: 28,
-      assists: 15,
-      winRate: 72,
-      careerDuration: "3 Years (2021 - Present)"
-    },
-    highlights: [
-      {
-        title: "League Top Scorer",
-        description: "Led the league in scoring with 28 goals",
-        achievement: "Golden Boot Winner",
+        title: "Olympic Gold",
+        description: "400m Sprint Victory",
+        achievement: "Olympic Record",
         date: "2023"
-      },
-      {
-        title: "National Team Debut",
-        description: "Scored in first international appearance",
-        achievement: "2 Goals, 1 Assist",
-        date: "2024"
       }
     ],
-    futurePlans: {
-      nextEvent: "Women's Champions League Quarter-Final",
-      daysRemaining: 30,
-      goal: "Win the Champions League"
+    social: {
+      instagram: "2.1M",
+      twitter: "1.8M",
+      tiktok: "900K"
     },
     coachQuote: {
-      text: "Sarah's technical ability and vision for the game are exceptional. She's redefining what's possible in women's football.",
-      author: "Coach Emma Martinez"
-    },
-    contracts: [
-      { brand: "Adidas", period: "2022-2025", type: "Equipment Sponsor" },
-      { brand: "Portland Thorns", period: "2021-2024", type: "Pro Contract" }
-    ],
-    social: {
-      instagram: "2.5M",
-      twitter: "1.8M",
-      tiktok: "3.2M"
+      text: "Allyson's dedication and work ethic are unmatched in track and field.",
+      author: "Coach Bob Kersee"
     }
   }
 };
@@ -155,36 +159,36 @@ export const featuredAthletes = [
   {
     moments: [
       {
-        id: 'marcus-johnson-1',
-        title: "First Pro Game",
-        athlete: "Marcus Johnson",
-        description: "Rookie Debut Highlight",
-        sport: "Basketball",
-        team: "Oklahoma City Thunder",
-        date: "2024",
-        rarity: "Grail",
-        editionSize: 75,
-        preview: "https://images.pexels.com/photos/2834917/pexels-photo-2834917.jpeg",
+        id: 'allyson-1',
+        title: "Olympic Sprint Final",
+        athlete: "Allyson Felix",
+        description: "Gold Medal Performance",
+        sport: "Track & Field",
+        team: "Team USA",
+        date: "2023",
+        rarity: "Legendary",
+        editionSize: 50,
+        preview: "https://images.pexels.com/photos/618613/pexels-photo-618613.jpeg",
         ownershipStake: 5,
-        careerMilestones: ["Rookie of the Month", "20+ Point Games: 5"],
-        potentialRating: 92,
+        careerMilestones: ["Olympic Gold", "World Record"],
+        potentialRating: 98,
         growth: "+45%"
       },
       {
-        id: 'sarah-williams-1',
-        title: "Breakthrough Performance",
-        athlete: "Sarah Williams",
-        description: "Championship Game Winner",
-        sport: "Football",
-        team: "Portland Thorns",
-        date: "2024",
+        id: 'megan-1',
+        title: "World Cup Goal",
+        athlete: "Megan Rapinoe",
+        description: "Championship Winning Goal",
+        sport: "Soccer",
+        team: "USWNT",
+        date: "2023",
         rarity: "Legendary",
-        editionSize: 100,
-        preview: "https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg",
+        editionSize: 75,
+        preview: "https://images.pexels.com/photos/1461973/pexels-photo-1461973.jpeg",
         ownershipStake: 3,
-        careerMilestones: ["League Top Scorer", "National Team Call-up"],
-        potentialRating: 95,
-        growth: "+32%"
+        careerMilestones: ["World Cup Winner", "Golden Boot"],
+        potentialRating: 96,
+        growth: "+38%"
       }
     ]
   }
@@ -192,21 +196,39 @@ export const featuredAthletes = [
 
 export const womenFootballAthletes = [
   {
-    name: "Maria Santos",
-    achievement: "Rising Star",
-    team: "Portland Thorns",
-    potentialRating: 94,
-    highlights: "12 Goals in Rookie Season",
-    stakingPrice: "2.5 SOL",
+    name: "Megan Rapinoe",
+    achievement: "World Cup Champion",
+    team: "USWNT",
+    potentialRating: 98,
+    highlights: "Golden Boot Winner",
+    stakingPrice: "5.2 SOL",
+    image: "https://images.pexels.com/photos/1461973/pexels-photo-1461973.jpeg"
+  },
+  {
+    name: "Alex Morgan",
+    achievement: "Olympic Gold Medalist",
+    team: "San Diego Wave FC",
+    potentialRating: 96,
+    highlights: "100+ International Goals",
+    stakingPrice: "4.8 SOL",
+    image: "https://images.pexels.com/photos/30378468/pexels-photo-30378468/free-photo-of-casual-female-soccer-player-in-goal-moment.jpeg"
+  },
+  {
+    name: "Sam Kerr",
+    achievement: "Golden Boot Winner",
+    team: "Chelsea FC",
+    potentialRating: 97,
+    highlights: "Record Breaking Season",
+    stakingPrice: "4.5 SOL",
     image: "https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg"
   },
   {
-    name: "Sarah Chen",
-    achievement: "National Team Captain",
-    team: "Chelsea FC",
-    potentialRating: 96,
-    highlights: "Golden Boot Winner",
-    stakingPrice: "5 SOL",
+    name: "Wendie Renard",
+    achievement: "Champions League Winner",
+    team: "Olympique Lyonnais",
+    potentialRating: 95,
+    highlights: "8x Champions League Titles",
+    stakingPrice: "4.2 SOL",
     image: "https://images.pexels.com/photos/3657154/pexels-photo-3657154.jpeg"
   }
 ];

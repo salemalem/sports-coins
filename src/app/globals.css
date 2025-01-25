@@ -31,10 +31,6 @@
   .card {
     @apply rounded-2xl transition-all duration-300;
   }
-
-  .glow {
-    @apply animate-glow;
-  }
 }
 
 @layer utilities {
@@ -42,35 +38,64 @@
     @apply bg-gradient-to-br from-purple-600 via-pink-600 to-blue-600;
   }
 
-  .animate-gradient {
-    background-size: 200% 200%;
-    animation: gradient 8s linear infinite;
+  /* Scanlines Effect */
+  .bg-scanlines {
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, 0.5) 50%
+    );
+    background-size: 100% 4px;
   }
 
-  .animate-glow {
-    animation: glow 2s ease-in-out infinite alternate;
+  /* Glitch Animations */
+  @keyframes glitch-1 {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
   }
 
-  @keyframes gradient {
-    0% { background-position: 0% 0%; }
-    50% { background-position: 100% 100%; }
-    100% { background-position: 0% 0%; }
+  @keyframes glitch-2 {
+    0% { transform: translate(0); }
+    20% { transform: translate(2px, -2px); }
+    40% { transform: translate(2px, 2px); }
+    60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(-2px, 2px); }
+    100% { transform: translate(0); }
   }
 
-  @keyframes glow {
-    from {
-      box-shadow: 0 0 10px theme('colors.purple.500/20'),
-                 0 0 20px theme('colors.purple.500/20'),
-                 0 0 30px theme('colors.purple.500/20');
-    }
-    to {
-      box-shadow: 0 0 20px theme('colors.purple.500/40'),
-                 0 0 30px theme('colors.purple.500/40'),
-                 0 0 40px theme('colors.purple.500/40');
-    }
+  @keyframes border-glitch {
+    0% { border-color: rgba(139, 92, 246, 0.5); }
+    25% { border-color: rgba(219, 39, 119, 0.5); }
+    50% { border-color: rgba(16, 185, 129, 0.5); }
+    75% { border-color: rgba(59, 130, 246, 0.5); }
+    100% { border-color: rgba(139, 92, 246, 0.5); }
   }
 
-  .animate-pulse-fast {
-    animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  @keyframes text-glitch {
+    0% { text-shadow: 2px 0 rgba(139, 92, 246, 0.5), -2px 0 rgba(219, 39, 119, 0.5); }
+    25% { text-shadow: -2px 0 rgba(139, 92, 246, 0.5), 2px 0 rgba(219, 39, 119, 0.5); }
+    50% { text-shadow: 2px 0 rgba(16, 185, 129, 0.5), -2px 0 rgba(59, 130, 246, 0.5); }
+    75% { text-shadow: -2px 0 rgba(16, 185, 129, 0.5), 2px 0 rgba(59, 130, 246, 0.5); }
+    100% { text-shadow: 2px 0 rgba(139, 92, 246, 0.5), -2px 0 rgba(219, 39, 119, 0.5); }
+  }
+
+  .animate-glitch-1 {
+    animation: glitch-1 750ms infinite linear alternate-reverse;
+  }
+
+  .animate-glitch-2 {
+    animation: glitch-2 750ms infinite linear alternate-reverse;
+  }
+
+  .animate-border-glitch {
+    animation: border-glitch 2s infinite linear;
+  }
+
+  .animate-text-glitch {
+    animation: text-glitch 2s infinite linear;
   }
 }
