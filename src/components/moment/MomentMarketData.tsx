@@ -50,22 +50,23 @@ export default function MomentMarketData() {
             <span>80% Sold</span>
           </div>
           <div className="h-3 bg-gray-800 rounded-full overflow-hidden relative">
-            {/* Static filled portion */}
+            {/* Progress bar with gradient */}
             <div className="absolute left-0 top-0 h-full w-[80%] bg-gradient-to-r from-purple-600 to-pink-600" />
             
             {/* Animated shimmer effect */}
             <motion.div
               className="absolute inset-0 w-[80%]"
-              style={{
-                background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)',
-              }}
+              initial={{ x: -100 }}
               animate={{
-                x: [-200, 200],
+                x: ['-100%', '100%']
               }}
               transition={{
                 repeat: Infinity,
                 duration: 2,
-                ease: "linear",
+                ease: "linear"
+              }}
+              style={{
+                background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)',
               }}
             />
 
@@ -73,12 +74,12 @@ export default function MomentMarketData() {
             <motion.div
               className="absolute left-0 top-0 h-full w-[80%]"
               animate={{
-                opacity: [0.5, 0.8, 0.5],
+                opacity: [0.5, 0.8, 0.5]
               }}
               transition={{
                 repeat: Infinity,
-                duration: 2,
-                ease: "easeInOut",
+                duration: 1.5,
+                ease: "easeInOut"
               }}
               style={{
                 background: 'linear-gradient(90deg, rgba(139,92,246,0.3), rgba(236,72,153,0.3))',

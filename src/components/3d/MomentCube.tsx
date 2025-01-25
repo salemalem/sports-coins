@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useSpring, animated } from '@react-spring/three';
 import * as THREE from 'three';
@@ -24,10 +24,10 @@ function Cube({ moment, isHovered, hoverDuration }: MomentCubeProps) {
   const meshRef = useRef<THREE.Mesh>(null);
   const texture = useTexture(moment.image);
   
-  // Spring animations
-  const { rotation, glow } = useSpring({
+  // Spring animations with explicit number type
+  const springs = useSpring({
     rotation: isHovered ? [0, Math.PI / 4, 0] : [0, 0, 0],
-    glow: isHovered ? 0.8 : 0.3,
+    opacity: isHovered ? 0.8 : 0.3,
     config: { mass: 1, tension: 170, friction: 26 }
   });
 
@@ -43,7 +43,7 @@ function Cube({ moment, isHovered, hoverDuration }: MomentCubeProps) {
   return (
     <animated.group
       // @ts-ignore - Known issue with react-spring types
-      rotation={rotation}
+      rotation={springs.rotation}
     >
       <mesh ref={meshRef}>
         {/* Main cube */}
@@ -113,11 +113,11 @@ function Cube({ moment, isHovered, hoverDuration }: MomentCubeProps) {
         {/* Glowing edges */}
         <animated.mesh>
           <boxGeometry args={[2.05, 3.05, 0.25]} />
-          <meshBasicMaterial
+          <animated.meshBasicMaterial
             color="#8b5cf6"
-            opacity={glow}
             transparent
             wireframe
+            opacity={springs.opacity}
           />
         </animated.mesh>
       </mesh>
