@@ -1,49 +1,42 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
+interface FeaturedMoment {
+  athlete: string;
+  title: string;
+  sport: string;
+  rarity: string;
+  potentialRating: number;
+  stakingPrice: string;
+  supporters: number;
+  growth: string;
+  preview: string;
+}
 
 const Marketplace = () => {
+  const [featuredMoments, setFeaturedMoments] = useState<FeaturedMoment[]>([]);
+
+  useEffect(() => {
+    const fetchMoments = async () => {
+      try {
+        const response = await fetch('/api/marketplace');
+        const data = await response.json();
+        setFeaturedMoments(data.featuredMoments);
+      } catch (error) {
+        console.error('Error fetching marketplace data:', error);
+      }
+    };
+
+    fetchMoments();
+  }, []);
+
   const categories = [
     { name: 'Rising Stars', count: 156 },
     { name: 'Career Milestones', count: 89 },
     { name: 'Championship Moments', count: 45 },
     { name: 'Rookie Debuts', count: 78 }
-  ];
-
-  const featuredMoments = [
-    {
-      athlete: "Emma Rodriguez",
-      title: "First Professional Goal",
-      sport: "Football",
-      rarity: "Legendary",
-      potentialRating: 95,
-      stakingPrice: "3.5 SOL",
-      supporters: 128,
-      growth: "+45%",
-      preview: "https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg"
-    },
-    {
-      athlete: "Marcus Chen",
-      title: "Rookie Season Highlight",
-      sport: "Basketball",
-      rarity: "Epic",
-      potentialRating: 92,
-      stakingPrice: "2.8 SOL",
-      supporters: 89,
-      growth: "+32%",
-      preview: "https://images.pexels.com/photos/2834917/pexels-photo-2834917.jpeg"
-    },
-    {
-      athlete: "Sarah Johnson",
-      title: "Championship Point",
-      sport: "Tennis",
-      rarity: "Rare",
-      potentialRating: 88,
-      stakingPrice: "1.9 SOL",
-      supporters: 67,
-      growth: "+28%",
-      preview: "https://images.pexels.com/photos/8224691/pexels-photo-8224691.jpeg"
-    }
   ];
 
   return (

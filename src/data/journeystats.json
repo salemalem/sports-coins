@@ -1,0 +1,19 @@
+{
+  "stats": [
+    {
+      "icon": "🌟",
+      "text": "Active Athletes: 1,234",
+      "delay": 0
+    },
+    {
+      "icon": "💫", 
+      "text": "Career Moments: 5,678",
+      "delay": 0.6
+    },
+    {
+      "icon": "🤝",
+      "text": "Fan Investments: 10,234", 
+      "delay": 1.2
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "players": {
+    "ALLYSON FELIX": {
+      "position": "Sprinter",
+      "birthDate": "November 18, 1985",
+      "birthPlace": "Los Angeles, California",
+      "height": "5' 6\"",
+      "weight": "125 lbs",
+      "birthYear": 1985,
+      "careerStart": "2003",
+      "achievements": [
+        "7x Olympic Gold Medalist",
+        "13x World Champion",
+        "Most decorated U.S. track athlete in history"
+      ]
+    },
+    "MEGAN RAPINOE": {
+      "position": "Forward",
+      "birthDate": "July 5, 1985",
+      "birthPlace": "Redding, California",
+      "height": "5' 6\"",
+      "weight": "141 lbs",
+      "birthYear": 1985,
+      "careerStart": "2006",
+      "achievements": [
+        "2x FIFA Women's World Cup Champion",
+        "Olympic Gold Medalist",
+        "Ballon d'Or Féminin Winner 2019"
+      ]
+    },
+    "SERENA WILLIAMS": {
+      "position": "Tennis Player",
+      "birthDate": "September 26, 1981",
+      "birthPlace": "Saginaw, Michigan",
+      "height": "5' 9\"",
+      "weight": "155 lbs",
+      "birthYear": 1981,
+      "careerStart": "1995",
+      "achievements": [
+        "23x Grand Slam Singles Titles",
+        "14x Grand Slam Doubles Titles",
+        "4x Olympic Gold Medalist"
+      ]
+    },
+    "BREANNA STEWART": {
+      "position": "Forward",
+      "birthDate": "August 27, 1994",
+      "birthPlace": "Syracuse, New York",
+      "height": "6' 4\"",
+      "weight": "170 lbs",
+      "birthYear": 1994,
+      "careerStart": "2016",
+      "achievements": [
+        "2x WNBA Champion",
+        "2x WNBA Finals MVP",
+        "4x NCAA Champion"
+      ]
+    },
+    "KATIE LEDECKY": {
+      "position": "Swimmer",
+      "birthDate": "March 17, 1997",
+      "birthPlace": "Washington, D.C.",
+      "height": "6' 0\"",
+      "weight": "160 lbs",
+      "birthYear": 1997,
+      "careerStart": "2012",
+      "achievements": [
+        "7x Olympic Gold Medalist",
+        "19x World Champion",
+        "Multiple World Record Holder"
+      ]
+    },
+    "SIMONE BILES": {
+      "position": "Artistic Gymnast",
+      "birthDate": "March 14, 1997",
+      "birthPlace": "Columbus, Ohio",
+      "height": "4' 8\"",
+      "weight": "104 lbs",
+      "birthYear": 1997,
+      "careerStart": "2011",
+      "achievements": [
+        "7x Olympic Medalist",
+        "25x World Championship Medalist",
+        "Most decorated gymnast in World Championship history"
+      ]
+    }
+  }
+}

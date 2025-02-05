@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 
 export default function Header() {
   return (
@@ -26,13 +27,22 @@ export default function Header() {
               </Link>
             </nav>
           </div>
-          <motion.span 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="px-3 py-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-sm text-white"
-          >
-            BETA
-          </motion.span>
+          <div className="flex items-center space-x-4">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="[&_.wallet-adapter-button]:!bg-white/10 [&_.wallet-adapter-button]:!backdrop-blur-sm [&_.wallet-adapter-button]:!border-2 [&_.wallet-adapter-button]:!border-purple-500/50 [&_.wallet-adapter-button]:hover:!bg-purple-600 [&_.wallet-adapter-button]:!text-white [&_.wallet-adapter-button]:!transition-all [&_.wallet-adapter-button]:!duration-200 [&_.wallet-adapter-button]:!h-[40px] [&_.wallet-adapter-button]:!px-6 [&_.wallet-adapter-button]:!rounded-full [&_.wallet-adapter-button-trigger]:!content-['Connect_Wallet'] [&_.wallet-adapter-dropdown]:!hidden"
+            >
+              <WalletMultiButton />
+            </motion.div>
+            <motion.span 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="px-3 py-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-sm text-white"
+            >
+              BETA
+            </motion.span>
+          </div>
         </div>
       </div>
     </header>

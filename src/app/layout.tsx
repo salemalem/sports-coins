@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/layout/Header'
+import { WalletContextProvider } from '@/context/WalletContextProvider'
+import '@solana/wallet-adapter-react-ui/styles.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,8 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        <div className="pt-16"> {/* Add padding to account for fixed header */}
+        <div className="pt-16">
           {children}
         </div>
       </body>

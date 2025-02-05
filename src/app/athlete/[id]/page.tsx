@@ -2,23 +2,73 @@
 
 import { motion } from 'framer-motion';
 import { FaInstagram, FaTwitter, FaTiktok } from 'react-icons/fa';
-import { athletes } from '@/data/athletes';
 import { notFound } from 'next/navigation';
+import VideoCard from '@/components/athlete/VideoCard';
+
+const athletes = {
+  "david-suker": {
+    name: "Davor Šuker",
+    tagline: "Croatian Football Legend",
+    image: "/images/davor_suker_tall.jpg",
+    potentialRating: 99,
+    investmentMetrics: {
+      growthRate: "+38%",
+      supporterCount: "15.2K",
+      averageROI: "42%",
+      stakingPrice: "8.5 SOL"
+    },
+    statistics: {
+      matchesPlayed: 69,
+      goalsScored: 45,
+      assists: 20,
+      winRate: 75,
+      careerDuration: "1992 - 2003"
+    },
+    highlights: [
+      {
+        title: "World Cup Golden Boot",
+        description: "Top scorer at 1998 FIFA World Cup",
+        achievement: "6 Goals",
+        date: "1998"
+      },
+      {
+        title: "Champions League Victory",
+        description: "Real Madrid triumph",
+        achievement: "Winner",
+        date: "1998"
+      },
+      {
+        title: "European Golden Boot",
+        description: "Top scorer in European leagues",
+        achievement: "Winner",
+        date: "1997"
+      }
+    ],
+    social: {
+      instagram: "850K",
+      twitter: "1.2M",
+      tiktok: "500K"
+    },
+    coachQuote: {
+      text: "One of the most natural finishers the game has ever seen. His ability to find the back of the net was simply extraordinary.",
+      author: "Miroslav Blažević, Croatia National Team Coach"
+    }
+  }
+};
 
 export default function AthleteProfile({ params }: { params: { id: string } }) {
-  const athlete = athletes[params.id];
+  const athleteInfo = athletes[params.id];
 
-  if (!athlete) {
+  if (!athleteInfo) {
     notFound();
   }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      {/* Hero Section with background image */}
       <div 
         className="relative h-[50vh] bg-cover bg-center"
         style={{
-          backgroundImage: `url(${athlete.image})`,
+          backgroundImage: `url(/images/davor_suker_wide.jpg)`,
           backgroundPosition: 'center 30%'
         }}
       >
@@ -30,7 +80,7 @@ export default function AthleteProfile({ params }: { params: { id: string } }) {
               animate={{ opacity: 1, y: 0 }}
               className="text-5xl md:text-7xl font-bold mb-4"
             >
-              {athlete.name}
+              {athleteInfo.name}
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -38,13 +88,12 @@ export default function AthleteProfile({ params }: { params: { id: string } }) {
               transition={{ delay: 0.2 }}
               className="text-2xl text-gray-200 mb-8"
             >
-              {athlete.tagline}
+              {athleteInfo.tagline}
             </motion.p>
           </div>
         </div>
       </div>
 
-      {/* Investment Stats */}
       <div className="bg-gray-800 border-b border-gray-700">
         <div className="container mx-auto px-4 py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -53,7 +102,7 @@ export default function AthleteProfile({ params }: { params: { id: string } }) {
               animate={{ opacity: 1, y: 0 }}
               className="text-center"
             >
-              <div className="text-green-400 text-3xl font-bold">{athlete.investmentMetrics.growthRate}</div>
+              <div className="text-green-400 text-3xl font-bold">{athleteInfo.investmentMetrics.growthRate}</div>
               <div className="text-gray-400">Growth Rate</div>
             </motion.div>
             <motion.div 
@@ -62,7 +111,7 @@ export default function AthleteProfile({ params }: { params: { id: string } }) {
               transition={{ delay: 0.1 }}
               className="text-center"
             >
-              <div className="text-purple-400 text-3xl font-bold">{athlete.investmentMetrics.supporterCount}</div>
+              <div className="text-purple-400 text-3xl font-bold">{athleteInfo.investmentMetrics.supporterCount}</div>
               <div className="text-gray-400">Supporters</div>
             </motion.div>
             <motion.div 
@@ -71,7 +120,7 @@ export default function AthleteProfile({ params }: { params: { id: string } }) {
               transition={{ delay: 0.2 }}
               className="text-center"
             >
-              <div className="text-blue-400 text-3xl font-bold">{athlete.investmentMetrics.averageROI}</div>
+              <div className="text-blue-400 text-3xl font-bold">{athleteInfo.investmentMetrics.averageROI}</div>
               <div className="text-gray-400">Avg. ROI</div>
             </motion.div>
             <motion.div 
@@ -80,7 +129,7 @@ export default function AthleteProfile({ params }: { params: { id: string } }) {
               transition={{ delay: 0.3 }}
               className="text-center"
             >
-              <div className="text-pink-400 text-3xl font-bold">{athlete.investmentMetrics.stakingPrice}</div>
+              <div className="text-pink-400 text-3xl font-bold">{athleteInfo.investmentMetrics.stakingPrice}</div>
               <div className="text-gray-400">Staking Price</div>
             </motion.div>
           </div>
@@ -89,9 +138,11 @@ export default function AthleteProfile({ params }: { params: { id: string } }) {
 
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Left Column */}
+          <div className="md:col-span-1">
+            <VideoCard />
+          </div>
+
           <div className="md:col-span-2 space-y-8">
-            {/* Career Stats */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -99,7 +150,7 @@ export default function AthleteProfile({ params }: { params: { id: string } }) {
             >
               <h2 className="text-2xl font-bold mb-6">Career Statistics</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                {Object.entries(athlete.statistics).map(([key, value], index) => (
+                {Object.entries(athleteInfo.statistics).map(([key, value], index) => (
                   <div key={key} className="text-center">
                     <div className="text-xl font-bold text-purple-400">{value}</div>
                     <div className="text-gray-400 text-sm">{key.replace(/([A-Z])/g, ' $1').trim()}</div>
@@ -108,7 +159,6 @@ export default function AthleteProfile({ params }: { params: { id: string } }) {
               </div>
             </motion.div>
 
-            {/* Career Highlights */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -117,7 +167,7 @@ export default function AthleteProfile({ params }: { params: { id: string } }) {
             >
               <h2 className="text-2xl font-bold mb-6">Career Highlights</h2>
               <div className="space-y-4">
-                {athlete.highlights.map((highlight, index) => (
+                {athleteInfo.highlights.map((highlight, index) => (
                   <div key={index} className="bg-gray-700/50 rounded-lg p-4">
                     <div className="flex items-start justify-between">
                       <div>
@@ -133,23 +183,19 @@ export default function AthleteProfile({ params }: { params: { id: string } }) {
                 ))}
               </div>
             </motion.div>
-          </div>
 
-          {/* Right Column */}
-          <div className="space-y-8">
-            {/* Investment Action */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="bg-gray-800 rounded-xl p-6"
             >
               <div className="text-center mb-6">
-                <div className="text-sm text-gray-400 mb-2">Potential Rating</div>
-                <div className="text-4xl font-bold text-purple-400 mb-4">{athlete.potentialRating}</div>
+                <div className="text-sm text-gray-400 mb-2">Legend Rating</div>
+                <div className="text-4xl font-bold text-purple-400 mb-4">{athleteInfo.potentialRating}</div>
                 <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
-                    style={{ width: `${athlete.potentialRating}%` }}
+                    style={{ width: `${athleteInfo.potentialRating}%` }}
                   />
                 </div>
               </div>
@@ -157,11 +203,10 @@ export default function AthleteProfile({ params }: { params: { id: string } }) {
                 Invest Now
               </button>
               <p className="text-sm text-gray-400 text-center">
-                Join {athlete.investmentMetrics.supporterCount} supporters in {athlete.name}'s journey
+                Join {athleteInfo.investmentMetrics.supporterCount} supporters in {athleteInfo.name}'s legacy
               </p>
             </motion.div>
 
-            {/* Social Proof */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -175,34 +220,33 @@ export default function AthleteProfile({ params }: { params: { id: string } }) {
                     <FaInstagram className="text-pink-400" />
                     <span>Instagram</span>
                   </div>
-                  <span className="font-bold">{athlete.social.instagram}</span>
+                  <span className="font-bold">{athleteInfo.social.instagram}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <FaTwitter className="text-blue-400" />
                     <span>Twitter</span>
                   </div>
-                  <span className="font-bold">{athlete.social.twitter}</span>
+                  <span className="font-bold">{athleteInfo.social.twitter}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <FaTiktok className="text-gray-400" />
                     <span>TikTok</span>
                   </div>
-                  <span className="font-bold">{athlete.social.tiktok}</span>
+                  <span className="font-bold">{athleteInfo.social.tiktok}</span>
                 </div>
               </div>
             </motion.div>
 
-            {/* Coach Quote */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
               className="bg-gray-800 rounded-xl p-6"
             >
-              <div className="text-gray-400 italic">"{athlete.coachQuote.text}"</div>
-              <div className="text-sm text-purple-400 mt-4">- {athlete.coachQuote.author}</div>
+              <div className="text-gray-400 italic">"{athleteInfo.coachQuote.text}"</div>
+              <div className="text-sm text-purple-400 mt-4">- {athleteInfo.coachQuote.author}</div>
             </motion.div>
           </div>
         </div>

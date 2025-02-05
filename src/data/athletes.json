@@ -1,0 +1,15 @@
+{
+  "david-suker": {
+    "videoCard": {
+      "image": "/images/davor_suker_tall.jpg",
+      "video": "/videos/davor_suker_edit2.mp4",
+      "name": "Davor Šuker",
+      "edition": {
+        "type": "Legendary Edition",
+        "number": "#1/10"
+      },
+      "title": "World Cup '98 Golden Boot",
+      "description": "Historic performance that defined a generation"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "risingStars": [
+    {
+      "title": "Rising Star Moment",
+      "description": "First Pro Game Highlight",
+      "image": "https://images.pexels.com/photos/2834917/pexels-photo-2834917.jpeg"
+    },
+    {
+      "title": "Career Milestone",
+      "description": "Championship Victory",
+      "image": "https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg"
+    },
+    {
+      "title": "Future Legend",
+      "description": "Rookie Season Highlights",
+      "image": "https://images.pexels.com/photos/3657154/pexels-photo-3657154.jpeg"
+    }
+  ]
+}

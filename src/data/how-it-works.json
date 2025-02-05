@@ -1,0 +1,25 @@
+{
+  "steps": [
+    {
+      "iconName": "FaUserAstronaut",
+      "title": "Create Your Legacy",
+      "description": "Athletes: Build your digital identity and share your journey",
+      "forAthletes": "Upload career highlights and set investment terms",
+      "forFans": "Discover rising stars and analyze potential"
+    },
+    {
+      "iconName": "FaChartLine",
+      "title": "Invest in Potential",
+      "description": "Fans: Support athletes early and grow together",
+      "forAthletes": "Receive support from believers in your journey",
+      "forFans": "Get early access to future stars' career moments"
+    },
+    {
+      "iconName": "FaTrophy",
+      "title": "Grow Together",
+      "description": "Share success as careers flourish",
+      "forAthletes": "Reward loyal supporters with exclusive content",
+      "forFans": "Earn rewards as supported athletes succeed"
+    }
+  ]
+}
