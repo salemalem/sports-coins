@@ -11,10 +11,13 @@ import { clusterApiUrl } from '@solana/web3.js';
 require('@solana/wallet-adapter-react-ui/styles.css');
 
 export const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  // You can also provide a custom RPC endpoint
   const endpoint = useMemo(() => clusterApiUrl('devnet'), []);
   const wallets = useMemo(
     () => [
+      /**
+       * Select the wallets you wish to support
+       * We only support Phantom for now to avoid extension conflicts
+       */
       new PhantomWalletAdapter(),
     ],
     []
@@ -23,7 +26,9 @@ export const WalletContextProvider: FC<{ children: ReactNode }> = ({ children })
   return (
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect={false}>
-        <WalletModalProvider>{children}</WalletModalProvider>
+        <WalletModalProvider>
+          {children}
+        </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
   );
