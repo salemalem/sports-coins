@@ -50,10 +50,9 @@
         "author": "Miroslav Blažević, Croatia National Team Coach"
       },
       "videos": {
-        "main": "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        "main": "/videos/david_suker_wide.mp4",
         "highlights": [
-          "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-          "https://joy1.videvo.net/videvo_files/video/free/video0476/large_watermarked/_import_61516692993d77.04238324_preview.mp4"
+          "/videos/david_suker_edit2.mp4"
         ]
       }
     },
