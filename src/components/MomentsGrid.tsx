@@ -1,13 +1,28 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { moments } from '@/data/athletes';
+import { type Moment } from '@/types/athletes';
 import MomentCard from './moments/MomentCard';
 
 export default function MomentsGrid() {
+  const [moments, setMoments] = useState<Moment[]>([]);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [hoverStartTime, setHoverStartTime] = useState<number | null>(null);
   const [hoverDuration, setHoverDuration] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchMoments = async () => {
+      try {
+        const response = await fetch('/api/moments');
+        const data = await response.json();
+        setMoments(data.moments);
+      } catch (error) {
+        console.error('Error fetching moments:', error);
+      }
+    };
+
+    fetchMoments();
+  }, []);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;

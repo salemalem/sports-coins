@@ -1,109 +1,12 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react';
-import { FaPlay, FaPause, FaExpand, FaCompress, FaVolumeMute, FaVolumeUp, FaHeart } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 interface WideVideoProps {
   videoUrl: string;
 }
 
 export default function WideVideo({ videoUrl }: WideVideoProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
-  const [isLiked, setIsLiked] = useState(false);
-  const [showControls, setShowControls] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const progressBarRef = useRef<HTMLDivElement>(null);
-  const controlsTimeoutRef = useRef<NodeJS.Timeout>();
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleTimeUpdate = () => {
-      setProgress((video.currentTime / video.duration) * 100);
-      setCurrentTime(video.currentTime);
-    };
-
-    const handleLoadedMetadata = () => {
-      setDuration(video.duration);
-    };
-
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
-
-    return () => {
-      video.removeEventListener('timeupdate', handleTimeUpdate);
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-    };
-  }, []);
-
-  const handleMouseMove = () => {
-    setShowControls(true);
-    if (controlsTimeoutRef.current) {
-      clearTimeout(controlsTimeoutRef.current);
-    }
-    controlsTimeoutRef.current = setTimeout(() => {
-      if (isPlaying) {
-        setShowControls(false);
-      }
-    }, 2000);
-  };
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const progressBar = progressBarRef.current;
-    if (!progressBar || !videoRef.current) return;
-    
-    const rect = progressBar.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const percentage = (x / rect.width) * 100;
-    videoRef.current.currentTime = (percentage / 100) * videoRef.current.duration;
-  };
-
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
-
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      containerRef.current?.requestFullscreen();
-      setIsFullscreen(true);
-    } else {
-      document.exitFullscreen();
-      setIsFullscreen(false);
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  const toggleLike = () => {
-    setIsLiked(!isLiked);
-  };
-
   return (
     <section className="relative">
       {/* Background Transition Elements */}
@@ -159,11 +62,8 @@ export default function WideVideo({ videoUrl }: WideVideoProps) {
 
           <div className="max-w-6xl mx-auto">
             <motion.div
-              ref={containerRef}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={() => setShowControls(false)}
               className="relative rounded-xl overflow-hidden bg-black/40 backdrop-blur-sm border border-purple-500/20 group"
             >
               {/* Animated Corner Accents */}
@@ -215,102 +115,16 @@ export default function WideVideo({ videoUrl }: WideVideoProps) {
               {/* Video Player */}
               <div className="relative aspect-video">
                 <video
-                  ref={videoRef}
                   src={videoUrl}
                   className="w-full h-full object-cover"
+                  autoPlay
+                  loop
+                  muted
                   playsInline
-                  muted={isMuted}
-                  onClick={togglePlay}
                 />
 
                 {/* Gradient Overlays */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
-                
-                {/* Controls Overlay */}
-                <AnimatePresence>
-                  {showControls && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="absolute inset-0"
-                    >
-                      {/* Center Play/Pause Button */}
-                      <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={togglePlay}
-                        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                                 w-20 h-20 bg-purple-600/80 rounded-full flex items-center justify-center
-                                 text-white backdrop-blur-sm border border-purple-400/50 shadow-lg shadow-purple-500/30"
-                      >
-                        {isPlaying ? <FaPause size={32} /> : <FaPlay size={32} />}
-                      </motion.button>
-
-                      {/* Top Controls */}
-                      <div className="absolute top-0 left-0 right-0 p-4 flex justify-end">
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          onClick={toggleLike}
-                          className={`p-2 rounded-full backdrop-blur-sm ${
-                            isLiked ? 'bg-pink-600/80 text-white' : 'bg-black/60 text-gray-400'
-                          }`}
-                        >
-                          <FaHeart size={20} />
-                        </motion.button>
-                      </div>
-
-                      {/* Bottom Controls */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
-                        {/* Progress Bar */}
-                        <div 
-                          ref={progressBarRef}
-                          className="relative h-1.5 bg-gray-700/50 rounded-full mb-4 cursor-pointer group"
-                          onClick={handleProgressClick}
-                        >
-                          <motion.div 
-                            className="absolute top-0 left-0 h-full bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 rounded-full
-                                     group-hover:shadow-lg group-hover:shadow-purple-500/50"
-                            style={{ width: `${progress}%` }}
-                          />
-                          <div 
-                            className="absolute top-1/2 -translate-y-1/2"
-                            style={{ left: `${progress}%` }}
-                          >
-                            <div className="w-4 h-4 bg-white rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </div>
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-4">
-                            <button
-                              onClick={togglePlay}
-                              className="text-white hover:text-purple-400 transition-colors"
-                            >
-                              {isPlaying ? <FaPause size={20} /> : <FaPlay size={20} />}
-                            </button>
-                            <button
-                              onClick={toggleMute}
-                              className="text-white hover:text-purple-400 transition-colors"
-                            >
-                              {isMuted ? <FaVolumeMute size={20} /> : <FaVolumeUp size={20} />}
-                            </button>
-                            <span className="text-white text-sm font-medium">
-                              {formatTime(currentTime)} / {formatTime(duration)}
-                            </span>
-                          </div>
-                          <button
-                            onClick={toggleFullscreen}
-                            className="text-white hover:text-purple-400 transition-colors"
-                          >
-                            {isFullscreen ? <FaCompress size={20} /> : <FaExpand size={20} />}
-                          </button>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </div>
             </motion.div>
 
