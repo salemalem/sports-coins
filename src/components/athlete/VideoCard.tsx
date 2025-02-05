@@ -2,38 +2,23 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
-import { useParams } from 'next/navigation';
-import { VideoCardData } from '@/types/video';
+import { AthleteData } from '@/types/athletes';
 import VideoBackground from './video/VideoBackground';
 import VideoOverlay from './video/VideoOverlay';
 import GlowingBorder from './video/GlowingBorder';
 
-export default function VideoCard() {
-  const params = useParams();
-  const [data, setData] = useState<VideoCardData | null>(null);
+interface VideoCardProps {
+  athleteInfo: AthleteData;
+}
+
+export default function VideoCard({ athleteInfo }: VideoCardProps) {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`/api/athletes/${params.id}`);
-        const athleteData = await response.json();
-        setData(athleteData.videoCard);
-      } catch (error) {
-        setError('Failed to fetch video data');
-      }
-    };
-
-    if (params.id) {
-      fetchData();
-    }
-  }, [params.id]);
-
-  useEffect(() => {
     const video = videoRef.current;
-    const videoSrc = data?.video;
+    const videoSrc = athleteInfo.videos.highlights[0];
     
     if (!video || !videoSrc) return;
 
@@ -69,9 +54,17 @@ export default function VideoCard() {
       video.src = '';
       video.load();
     };
-  }, [data?.video]);
+  }, [athleteInfo.videos.highlights]);
 
-  if (!data) return null;
+  const videoData = {
+    image: athleteInfo.image,
+    edition: {
+      type: "Legendary Edition",
+      number: "#1/10"
+    },
+    title: athleteInfo.highlights[0].title,
+    description: athleteInfo.highlights[0].description
+  };
 
   return (
     <motion.div
@@ -85,16 +78,16 @@ export default function VideoCard() {
 
       {/* Video and background */}
       <VideoBackground
-        image={data.image}
+        image={videoData.image}
         videoRef={videoRef}
         isVideoLoaded={isVideoLoaded}
       />
 
       {/* Content overlay */}
       <VideoOverlay
-        edition={data.edition}
-        title={data.title}
-        description={data.description}
+        edition={videoData.edition}
+        title={videoData.title}
+        description={videoData.description}
       />
 
       {/* Error display */}
