@@ -10,22 +10,45 @@ interface Athlete {
   image: string;
 }
 
+interface Legend {
+  id: string;
+  name: string;
+  title: string;
+  image: string;
+  edition: string;
+}
+
 const FeaturedAthletes = () => {
   const [athletes, setAthletes] = useState<Athlete[]>([]);
+  const [legend, setLegend] = useState<Legend | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchAthletes = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch('/api/featured-athletes');
-        const data = await response.json();
-        setAthletes(data.risingStars);
+        const [athletesResponse, legendResponse] = await Promise.all([
+          fetch('/api/featured-athletes'),
+          fetch('/api/legend')
+        ]);
+        
+        const athletesData = await athletesResponse.json();
+        const legendData = await legendResponse.json();
+        
+        setAthletes(athletesData.risingStars);
+        setLegend(legendData.legend);
       } catch (error) {
-        console.error('Error fetching featured athletes:', error);
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    fetchAthletes();
+    fetchData();
   }, []);
+
+  if (isLoading) {
+    return null; // Return null while loading to prevent flash
+  }
 
   return (
     <div className="space-y-12">
@@ -47,38 +70,40 @@ const FeaturedAthletes = () => {
       </motion.div>
 
       {/* Legends Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2 }}
-        className="max-w-5xl mx-auto"
-      >
-        <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold text-white mb-2">Legends Collection</h3>
-          <p className="text-gray-400">Own a piece of football history</p>
-        </div>
-        <Link href="/athlete/david-suker" className="block">
-          <div className="bg-black/40 backdrop-blur-sm rounded-lg p-4 border border-purple-500/20 transform transition-all duration-300 hover:-translate-y-2">
-            <div className="aspect-[21/9] rounded-lg overflow-hidden relative group">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
-              <img 
-                src="/images/davor_suker_wide.jpg"
-                alt="Davor Šuker"
-                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-              />
-              <div className="absolute bottom-4 left-4 right-4 z-20">
-                <h3 className="text-2xl font-bold text-white mb-2">Davor Šuker</h3>
-                <p className="text-lg text-gray-300">Golden Boot Winner - World Cup '98</p>
-                <div className="mt-4">
-                  <span className="inline-block bg-purple-500/80 text-white px-3 py-1 rounded-full text-sm">
-                    Legendary Edition
-                  </span>
+      {legend && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2 }}
+          className="max-w-5xl mx-auto"
+        >
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold text-white mb-2">Legends Collection</h3>
+            <p className="text-gray-400">Own a piece of football history</p>
+          </div>
+          <Link href={`/athlete/${legend.id}`} className="block">
+            <div className="bg-black/40 backdrop-blur-sm rounded-lg p-4 border border-purple-500/20 transform transition-all duration-300 hover:-translate-y-2">
+              <div className="aspect-[21/9] rounded-lg overflow-hidden relative group">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
+                <img 
+                  src={legend.image}
+                  alt={legend.name}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute bottom-4 left-4 right-4 z-20">
+                  <h3 className="text-2xl font-bold text-white mb-2">{legend.name}</h3>
+                  <p className="text-lg text-gray-300">{legend.title}</p>
+                  <div className="mt-4">
+                    <span className="inline-block bg-purple-500/80 text-white px-3 py-1 rounded-full text-sm">
+                      {legend.edition}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </Link>
-      </motion.div>
+          </Link>
+        </motion.div>
+      )}
     </div>
   );
 };

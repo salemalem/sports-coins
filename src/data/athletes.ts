@@ -47,7 +47,7 @@ export interface Moment {
 
 export const moments: Moment[] = [
   {
-    id: 'david-suker-1',
+    id: 'davor-suker-1',
     athlete: 'Davor Šuker',
     play: 'World Cup Golden Boot',
     date: 'Jul 12 1998',
@@ -55,7 +55,7 @@ export const moments: Moment[] = [
     edition: 'Ultimate #1/10',
     rarity: 'LE',
     image: '/images/davor_suker_tall.jpg',
-    video: '/videos/davor_suker_edit1.mp4'
+    video: '/videos/davor_suker_edit2.mp4'
   }
 ];
 
@@ -67,7 +67,7 @@ export const womenFootballAthletes = [
     potentialRating: 98,
     highlights: "Golden Boot Winner",
     stakingPrice: "5.2 SOL",
-    image: "https://images.pexels.com/photos/1461973/pexels-photo-1461973.jpeg"
+    image: "/images/megan_rapinoe_square.jpg"
   },
   {
     name: "Alex Morgan",
@@ -76,12 +76,12 @@ export const womenFootballAthletes = [
     potentialRating: 96,
     highlights: "100+ International Goals",
     stakingPrice: "4.8 SOL",
-    image: "https://images.pexels.com/photos/30378468/pexels-photo-30378468/free-photo-of-casual-female-soccer-player-in-goal-moment.jpeg"
+    image: "/images/alex_morgan_square.jpg"
   }
 ];
 
 export const athletes: Record<string, AthleteData> = {
-  "david-suker": {
+  "davor-suker": {
     name: "Davor Šuker",
     tagline: "Croatian Football Legend",
     image: "/images/davor_suker_tall.jpg",

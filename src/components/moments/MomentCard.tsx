@@ -21,8 +21,11 @@ export default function MomentCard({
   onMouseEnter,
   onMouseLeave
 }: MomentCardProps) {
+  // Extract athlete ID from moment ID (e.g., 'davor-suker-1' -> 'davor-suker')
+  const athleteId = moment.id.split('-').slice(0, -1).join('-');
+
   return (
-    <Link href={`/moment/${moment.id}`}>
+    <Link href={`/athlete/${athleteId}`}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

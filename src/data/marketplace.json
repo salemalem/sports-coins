@@ -9,7 +9,7 @@
       "stakingPrice": "3.5 SOL",
       "supporters": 128,
       "growth": "+45%",
-      "preview": "https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg"
+      "preview": "/images/emma_square.jpg"
     },
     {
       "athlete": "Marcus Chen",
@@ -20,7 +20,7 @@
       "stakingPrice": "2.8 SOL",
       "supporters": 89,
       "growth": "+32%",
-      "preview": "https://images.pexels.com/photos/2834917/pexels-photo-2834917.jpeg"
+      "preview": "/images/marcus_square.webp"
     },
     {
       "athlete": "Sarah Johnson",
@@ -31,7 +31,7 @@
       "stakingPrice": "1.9 SOL",
       "supporters": 67,
       "growth": "+28%",
-      "preview": "https://images.pexels.com/photos/8224691/pexels-photo-8224691.jpeg"
+      "preview": "/images/sarah_square.jpg"
     }
   ]
 }
