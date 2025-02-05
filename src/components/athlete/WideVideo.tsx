@@ -23,7 +23,7 @@ export default function WideVideo({ videoUrl }: WideVideoProps) {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(236,72,153,0.1),transparent_50%)]" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(59,130,246,0.1),transparent_50%)]" />
           </div>
-          
+
           {/* Animated lines */}
           <div className="absolute inset-0 overflow-hidden">
             <motion.div
@@ -44,27 +44,27 @@ export default function WideVideo({ videoUrl }: WideVideoProps) {
 
       {/* Content */}
       <div className="relative py-24">
-        <div className="container mx-auto px-4">
+        <div className="container px-4 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="mb-16 text-center"
           >
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-4">
+            <h2 className="mb-4 text-4xl font-bold text-transparent md:text-5xl bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text">
               Legendary Moment
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="max-w-3xl mx-auto text-xl text-gray-400">
               Experience the historic performance that changed everything
             </p>
           </motion.div>
 
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="relative rounded-xl overflow-hidden bg-black/40 backdrop-blur-sm border border-purple-500/20 group"
+              className="relative overflow-hidden border rounded-xl bg-black/40 backdrop-blur-sm border-purple-500/20 group"
             >
               {/* Animated Corner Accents */}
               {[
@@ -108,15 +108,15 @@ export default function WideVideo({ videoUrl }: WideVideoProps) {
                   </div>
                 </motion.div>
               ))}
-              
+
               {/* TV Scanlines Effect */}
-              <div className="absolute inset-0 bg-scanlines opacity-5 pointer-events-none z-10" />
-              
+              <div className="absolute inset-0 z-10 pointer-events-none bg-scanlines opacity-5" />
+
               {/* Video Player */}
               <div className="relative aspect-video">
                 <video
                   src={videoUrl}
-                  className="w-full h-full object-cover"
+                  className="object-cover w-full h-full"
                   autoPlay
                   loop
                   muted
@@ -124,7 +124,7 @@ export default function WideVideo({ videoUrl }: WideVideoProps) {
                 />
 
                 {/* Gradient Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/60 via-transparent to-black/30" />
               </div>
             </motion.div>
 
@@ -133,19 +133,19 @@ export default function WideVideo({ videoUrl }: WideVideoProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mt-6 bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-purple-500/20"
+              className="p-6 mt-6 border rounded-lg bg-gray-800/50 backdrop-blur-sm border-purple-500/20"
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <motion.span
                     whileHover={{ scale: 1.05 }}
-                    className="px-3 py-1 bg-purple-600/20 text-purple-400 rounded-full text-sm border border-purple-500/20"
+                    className="px-3 py-1 text-sm text-purple-400 border rounded-full bg-purple-600/20 border-purple-500/20"
                   >
                     Exclusive Content
                   </motion.span>
                   <motion.span
                     whileHover={{ scale: 1.05 }}
-                    className="px-3 py-1 bg-pink-600/20 text-pink-400 rounded-full text-sm border border-pink-500/20"
+                    className="px-3 py-1 text-sm text-pink-400 border rounded-full bg-pink-600/20 border-pink-500/20"
                   >
                     Limited Edition
                   </motion.span>
@@ -158,15 +158,15 @@ export default function WideVideo({ videoUrl }: WideVideoProps) {
                     duration: 2,
                     repeat: Infinity,
                   }}
-                  className="text-green-400 font-bold flex items-center gap-2"
+                  className="flex items-center gap-2 font-bold text-green-400"
                 >
                   <span className="w-2 h-2 bg-green-400 rounded-full shadow-lg shadow-green-500/50" />
                   Live
                 </motion.span>
               </div>
               <p className="text-gray-300">
-                Witness the defining moment that etched this performance into sports history. 
-                This exclusive footage captures the raw emotion and extraordinary skill that made 
+                Witness the defining moment that etched this performance into sports history.
+                This exclusive footage captures the raw emotion and extraordinary skill that made
                 this moment legendary.
               </p>
             </motion.div>
@@ -175,7 +175,7 @@ export default function WideVideo({ videoUrl }: WideVideoProps) {
       </div>
 
       {/* Bottom transition gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-t from-gray-900 to-transparent" />
     </section>
   );
 }
