@@ -2,62 +2,12 @@
 
 import { motion } from 'framer-motion';
 import { FaInstagram, FaTwitter, FaTiktok } from 'react-icons/fa';
+import { athletes } from '@/data/athletes';
 import { notFound } from 'next/navigation';
 import VideoCard from '@/components/athlete/VideoCard';
 
-const athletes = {
-  "david-suker": {
-    name: "Davor Šuker",
-    tagline: "Croatian Football Legend",
-    image: "/images/davor_suker_tall.jpg",
-    potentialRating: 99,
-    investmentMetrics: {
-      growthRate: "+38%",
-      supporterCount: "15.2K",
-      averageROI: "42%",
-      stakingPrice: "8.5 SOL"
-    },
-    statistics: {
-      matchesPlayed: 69,
-      goalsScored: 45,
-      assists: 20,
-      winRate: 75,
-      careerDuration: "1992 - 2003"
-    },
-    highlights: [
-      {
-        title: "World Cup Golden Boot",
-        description: "Top scorer at 1998 FIFA World Cup",
-        achievement: "6 Goals",
-        date: "1998"
-      },
-      {
-        title: "Champions League Victory",
-        description: "Real Madrid triumph",
-        achievement: "Winner",
-        date: "1998"
-      },
-      {
-        title: "European Golden Boot",
-        description: "Top scorer in European leagues",
-        achievement: "Winner",
-        date: "1997"
-      }
-    ],
-    social: {
-      instagram: "850K",
-      twitter: "1.2M",
-      tiktok: "500K"
-    },
-    coachQuote: {
-      text: "One of the most natural finishers the game has ever seen. His ability to find the back of the net was simply extraordinary.",
-      author: "Miroslav Blažević, Croatia National Team Coach"
-    }
-  }
-};
-
 export default function AthleteProfile({ params }: { params: { id: string } }) {
-  const athleteInfo = athletes[params.id];
+  const athleteInfo = athletes[params.id as keyof typeof athletes];
 
   if (!athleteInfo) {
     notFound();

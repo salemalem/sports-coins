@@ -34,7 +34,7 @@ export default function VideoCard() {
   useEffect(() => {
     const video = videoRef.current;
     const videoSrc = data?.video;
-
+    
     if (!video || !videoSrc) return;
 
     let isComponentMounted = true;
